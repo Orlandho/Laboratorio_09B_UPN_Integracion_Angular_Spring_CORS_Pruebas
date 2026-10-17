@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Laboratorio_09A_UPN_Repaso_Codespaces_Angular_Mock": {
+    "Laboratorio_09B_UPN_Integracion_Angular_Spring_CORS_Pruebas": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -43,7 +43,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
+                  "maximumWarning": "6kB",
                   "maximumError": "8kB"
                 }
               ],
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Laboratorio_09A_UPN_Repaso_Codespaces_Angular_Mock:build:production"
+              "buildTarget": "Laboratorio_09B_UPN_Integracion_Angular_Spring_CORS_Pruebas:build:production"
             },
             "development": {
-              "buildTarget": "Laboratorio_09A_UPN_Repaso_Codespaces_Angular_Mock:build:development"
+              "buildTarget": "Laboratorio_09B_UPN_Integracion_Angular_Spring_CORS_Pruebas:build:development"
             }
           },
           "defaultConfiguration": "development"

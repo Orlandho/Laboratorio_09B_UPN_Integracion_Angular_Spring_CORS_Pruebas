@@ -23,26 +23,9 @@ Se sustituyó el servicio de datos mock por un `ProductoService` basado en `Http
 
 ## 🏗️ 2. Arquitectura de Integración
 
-El diagrama de arquitectura modelado en **Draw.io** se encuentra en [`diagramas/arquitectura-lab09b.drawio`](diagramas/arquitectura-lab09b.drawio).
-
-```
-Navegador Web (SPA :4200)
-    │
-    ▼
-Angular HttpClient (ProductoService)
-    │  (GET, POST, PUT, DELETE)
-    ▼
-CorsConfig.java (Filtro CORS WebMvcConfigurer)
-    │
-    ▼
-Spring Boot REST Controller (:8080 /api/productos)
-    │
-    ▼
-ProductoService -> ProductoRepository (Spring Data JPA)
-    │
-    ▼
-Base de Datos Relacional (H2 In-Memory / MySQL)
-```
+La topología de componentes y flujo de datos de integración (Angular SPA -> CORS Filter -> Spring Boot Controller -> JPA Repository -> MySQL / H2) está modelada en el archivo nativo editable de **Draw.io**:
+* 📄 **Diagrama Draw.io:** [`diagramas/arquitectura-lab09b.drawio`](diagramas/arquitectura-lab09b.drawio)
+*(Compatible para visualización y edición en VS Code via "Draw.io Integration" o mediante [app.diagrams.net](https://app.diagrams.net)).*
 
 ---
 
