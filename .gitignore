@@ -1,0 +1,17 @@
+# Node / Angular
+**/node_modules/
+**/dist/
+**/.angular/
+**/.vscode/
+
+# Java / Maven
+**/target/
+*.class
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

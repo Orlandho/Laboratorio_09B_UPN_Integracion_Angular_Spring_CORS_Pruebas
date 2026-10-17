@@ -1,0 +1,90 @@
+<div class="catalogo-wrapper">
+  <div class="catalogo-header">
+    <div>
+      <h2>Catálogo de Productos (API REST Spring Boot)</h2>
+      <p class="subtitle">Integración HTTP en tiempo real con persistencia en base de datos</p>
+    </div>
+    <div class="header-actions">
+      <button type="button" routerLink="/productos/nuevo" class="btn-create">
+        + Nuevo producto
+      </button>
+      <button type="button" (click)="cargarProductos()" class="btn-reload" [disabled]="cargando()">
+        🔄 Recargar
+      </button>
+    </div>
+  </div>
+
+  <!-- Barra de búsqueda con Query Params -->
+  <div class="search-bar">
+    <div class="search-input-group">
+      <input
+        type="text"
+        [(ngModel)]="criterio"
+        (keyup.enter)="buscar()"
+        placeholder="Buscar producto por nombre..."
+      />
+      <button type="button" (click)="buscar()" class="btn-search">Buscar</button>
+      @if (criterio) {
+        <button type="button" (click)="limpiarBusqueda()" class="btn-clear">Limpiar</button>
+      }
+    </div>
+  </div>
+
+  <!-- Estado de carga -->
+  @if (cargando()) {
+    <div class="alert alert-info">
+      <span class="spinner">⏳</span> Cargando datos desde Spring Boot API...
+    </div>
+  }
+
+  <!-- Mensaje de error -->
+  @if (error()) {
+    <div class="alert alert-danger">
+      <strong>⚠️ Error:</strong> {{ error() }}
+      <button (click)="cargarProductos()" class="btn-retry">Reintentar</button>
+    </div>
+  }
+
+  <!-- Tabla de resultados -->
+  @if (!cargando() && !error()) {
+    <div class="table-container">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado Stock</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of productos(); track p.id) {
+            <tr>
+              <td><strong>#{{ p.id }}</strong></td>
+              <td>{{ p.nombre }}</td>
+              <td>S/ {{ p.precio | number:'1.2-2' }}</td>
+              <td>{{ p.stock }}</td>
+              <td>
+                <span class="stock-badge" [class.badge-low]="p.stock < 5" [class.badge-ok]="p.stock >= 5">
+                  {{ p.estadoStock || (p.stock < 5 ? 'INSUFICIENTE' : 'OK') }}
+                </span>
+              </td>
+              <td class="action-buttons">
+                <button class="btn-edit" [routerLink]="['/productos/editar', p.id]">Editar</button>
+                <button class="btn-delete" (click)="eliminar(p.id)">Eliminar</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty-state">
+                No se encontraron productos coincidentes en el inventario.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
